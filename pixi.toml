@@ -1,0 +1,43 @@
+[workspace]
+authors = ["kaspermunch <kaspermunch@birc.au.dk>"]
+channels = ["conda-forge", "munch-group"]
+name = "munch-group-project"
+platforms = ["linux-64", "osx-arm64"]
+version = "0.1.0"
+
+[dependencies]
+git = "*"
+gh = "*"
+pip = "*"
+git-lfs = "*"
+cryptography = "*"
+jupyterlab = "*"
+nodejs = "*"
+seaborn = "*"
+pytables = "*"
+scipy = "*"
+statsmodels = "*"
+ipykernel = "*"
+jupyter = "*"
+nbconvert = "*"
+vscodenb = "*"
+r-rsvg = "*"
+
+
+[tasks.init]
+args = ["new_name"]
+cmd = "python ./scripts/rename.py {{new_name}} && gh repo set-default https://github.com/munch-group/{{new_name}}"
+
+[tasks.docs]
+cmd = "./scripts/docs-run-notebooks.sh && git add -u notebooks"
+description = "Run documentation notebooks"
+
+[tasks.clean]
+cmd = "git clean -id"
+description = "Removes untracked files and directories but respects your .gitignores"
+
+[tasks.commit]
+depends-on = ["docs"]
+cmd = "./scripts/git-commit.sh"
+description = "Commits with message made by Claude"
+
