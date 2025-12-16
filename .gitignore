@@ -144,3 +144,4 @@ pixi.lock
 
 .DS_Store
 
+data/bins/*.tsv
