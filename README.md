@@ -1,58 +1,77 @@
+# Data from published paper
 
-# Template repository for a library project
+DOI: 10.1038/s41467-025-59055-z
 
-## Initial set up
+"Three-dimensional genome structures of single mammalian sperm"
 
-```bash
-pixi run init
-```
+Xu et al. 2025
 
-## Get updates to upstream fork
+    Accesion GEO: GSE276999
 
-Add upstream if not already added
+Down load TAR archive of human .3dg and .pairs files for all cells in scHiC analysis:
 
-```bash
-git remote add upstream https://github.com/munch-group/munch-group-project.git
-```
+    wget "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE276999&format=file" -O GSE276999_RAW.tar
 
-Fetch upstream changes
+Unpack pairs data:
 
-```bash
-git fetch upstream
-```
+    mkdir -p steps/pairs
+    tar -xvf GSE276999_RAW.tar --exclude='*3dg.txt.gz' -C ./steps/pairs/
 
-Either rebase your changes on top of upstream (cleaner history)
 
-```bash
-git rebase upstream/main
-```
+Meta data sheet contains information about each cell, if it's X or Y-bearing sperm. 
 
-Or, merge upstream into your fork (preserves history)
+---
 
-```bash
-git merge upstream/main
-```
+This is how it looks after `workflow.py` has run.
 
-If you want to see what's changed upstream before applying:
+```plaintext
+(hic) [sojern@fe-open-01 human_sperm_haplo_seperated]$ cooler ls sperm_X.merged.mcool
+sperm_X.merged.mcool::/resolutions/1000
+sperm_X.merged.mcool::/resolutions/5000
+sperm_X.merged.mcool::/resolutions/10000
+sperm_X.merged.mcool::/resolutions/50000
+sperm_X.merged.mcool::/resolutions/100000
+sperm_X.merged.mcool::/resolutions/500000
 
-```bash
-git log HEAD..upstream/main
-```
+(hic) [sojern@fe-open-01 human_sperm_haplo_seperated]$ cooler ls sperm_Y.merged.mcool
+sperm_Y.merged.mcool::/resolutions/1000
+sperm_Y.merged.mcool::/resolutions/5000
+sperm_Y.merged.mcool::/resolutions/10000
+sperm_Y.merged.mcool::/resolutions/50000
+sperm_Y.merged.mcool::/resolutions/100000
+sperm_Y.merged.mcool::/resolutions/500000
 
-See the actual diff
+(hic) [sojern@fe-open-01 human_sperm_haplo_seperated]$ cooler info sperm_X.merged.mcool::/resolutions/1000
+{
+    "bin-size": 1000,
+    "bin-type": "fixed",
+    "creation-date": "2025-06-20T10:31:13.748340",
+    "format": "HDF5::Cooler",
+    "format-url": "https://github.com/open2c/cooler",
+    "format-version": 3,
+    "generated-by": "cooler-0.10.2",
+    "genome-assembly": "GRCh38",
+    "nbins": 3099848,
+    "nchroms": 194,
+    "nnz": 93745182,
+    "storage-mode": "symmetric-upper",
+    "sum": 94109833
+}
 
-```bash
-git diff HEAD...upstream/main
-```
-
-Then push your updated fork:
-
-```bash
-git push origin main
-```
-
-If you rebased and need to force push
-    
-```bash
-git push origin main --force-with-lease
+(hic) [sojern@fe-open-01 human_sperm_haplo_seperated]$ cooler info sperm_Y.merged.mcool::/resolutions/1000
+{
+    "bin-size": 1000,
+    "bin-type": "fixed",
+    "creation-date": "2025-06-20T10:30:46.645659",
+    "format": "HDF5::Cooler",
+    "format-url": "https://github.com/open2c/cooler",
+    "format-version": 3,
+    "generated-by": "cooler-0.10.2",
+    "genome-assembly": "GRCh38",
+    "nbins": 3099848,
+    "nchroms": 194,
+    "nnz": 77537287,
+    "storage-mode": "symmetric-upper",
+    "sum": 77836378
+}
 ```
