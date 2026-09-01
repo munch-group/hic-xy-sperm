@@ -1,0 +1,5 @@
+files:
+  all_genes.h5: all genes
+  segments_100000.csv: 100kb segments
+  segments_500000.csv: 500kb segments
+  segments_50000.csv: 50kb segments
