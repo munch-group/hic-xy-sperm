@@ -3,4 +3,8 @@ files:
   segments_100000.csv: 100kb segments
   segments_500000.csv: 500kb segments
   segments_50000.csv: 50kb segments
-  eigs: Eigenvector tracks for X and Y sperm
+  eigs:
+    description: Eigenvector tracks for X and Y sperm
+    sha256: "4eaa1ddf5b55c926da51bb529b582d4739bf80d53a1d252d9a45af494ef806e5"
+    size: 322403263
+    parts: 1322
