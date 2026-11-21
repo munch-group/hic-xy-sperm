@@ -19,6 +19,14 @@ files:
     description: Eigen vectors chrX X sperm
     sha256: "d0f08222236ad6a0aec8f5e687a446e55bf4639dc8df6d1cb2b712d20a65b549"
     size: 301389
+  sperm_X.merged.mcool:
+    description: merged cooler file for chrY sperm
+    sha256: "bee3665673511d6605cdcb200b8c6342a4bfcc149b8f9b567fd330e29f9be1cb"
+    size: 732576045
+  sperm_Y.merged.mcool:
+    description: merged cooler for chrX sperm
+    sha256: "b28c740d3324232774f5c897e3f398ab0c20e047e7f3aa217175a464e46441d7"
+    size: 620017480
   eigs:
     description: Eigenvector tracks for X and Y sperm
     sha256: "4eaa1ddf5b55c926da51bb529b582d4739bf80d53a1d252d9a45af494ef806e5"
